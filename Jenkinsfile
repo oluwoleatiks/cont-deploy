@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     REPOSITORY_TAG      = "${PRIVATE_REPO_TAG}/${PRIVATE_APP_NAME}:${VERSION}"
-    PRIVATE_REPO_TAG    = "371129761102.dkr.ecr.eu-west-1.amazonaws.com/awsprime1"
+    PRIVATE_REPO_TAG    = "371129761102.dkr.ecr.eu-west-1.amazonaws.com"
     PRIVATE_APP_NAME    = "awsprime1"
     VERSION             = "${BUILD_ID}"
     
