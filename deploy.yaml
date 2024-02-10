@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cons-deploy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: awsprime
+  namespace: cons-deploy
+spec:
+  selector:
+    matchLabels:
+      app: awsprime
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: awsprime
+    spec:
+      containers:
+      - name: awsprime
+        image: ${REPOSITORY_TAG}
+        resources:
+          requests:
+             memory: 100Mi
+             cpu: 0.25
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: awsprime-svc
+  namespace: cons-deploy
+
+spec:
+ 
+  selector:
+    app: awsprime
+
+  ports:
+    - name: http
+      port: 80
+      nodePort: 30000
+
+  type: NodePort
